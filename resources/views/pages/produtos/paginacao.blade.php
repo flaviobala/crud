@@ -7,13 +7,19 @@
     <h1 class="h2">Produtos</h1>
   </div>
   <div>
-    <form method="" action="get">
-        <input type="text" name="Pesquisar" placeholder="Digite o Nome" />
+    <form action="{{ route('produto.index')}}" method="get">
+        <input type="text" name="Pesquisar" value="{{ Request::get('Pesquisar')}}"
+
+         placeholder="Digite o Nome" />
         <button>Pesquisar</button>
-        <a type="button" href="" class="btn btn-success float-end"> Incluir Produto </a>
+        <a type="button" href="" class="btn btn-success float-end">
+           Incluir Produto
+       </a>
     </form>
-      
-      <div class="table-responsive mt-4">
+       <div class="table-responsive mt-4">
+        @if ($findProduto->isEmpty())
+        <p>Não existe dados </p>
+          @else
         <table class="table table-striped table-sm">
           <thead>
             <tr>
@@ -28,14 +34,18 @@
                 <td>{{$produto->nome}}</td>
                 <td>{{ 'R$' . ' ' . number_format($produto->valor, 2, ',', '.')}}</td>
                 <td>
-                    <a href="" class="btn btn-light btn-sm">Editar</a>
-                    <a href="" class="btn btn-danger btn-sm">Excluir</a>
+                    <a href="" class="btn btn-light btn-sm">
+                      Editar
+                    </a>
+                    <a href="{{Route('produto.delete')}}" class="btn btn-danger btn-sm">
+                      Excluir
+                    </a>
                 </td>
               </tr>
             @endforeach
-           
           </tbody>
         </table>
+        @endif
     </div>
   </div>
 
