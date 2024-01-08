@@ -4,6 +4,8 @@ use App\Models\Componentes;
 use App\Http\Requests\FormRequestProduto;
 use App\Models\Produto;
 use Brian2694\Toastr\Facades\Toastr;
+use Brian2694\Toastr\Toastr as ToastrToastr;
+use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 class ProdutosController extends Controller
 {    private $produto;
@@ -27,7 +29,9 @@ class ProdutosController extends Controller
     public function cadastrarProduto(FormRequestProduto $request)
     {
         if($request->method() == "POST"){
+           
             //criar produtos
+           
           $data = $request->all();
           $componentes = new Componentes();
           $data['valor'] = $componentes->formatacaoMascaraDinheiroDecimal($data['valor']);
