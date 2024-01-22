@@ -1,14 +1,15 @@
 <?php
 namespace App\Http\Controllers;
-use App\Models\Componentes;
+
 use App\Http\Requests\FormRequestProduto;
+use App\Models\Componentes;
 use App\Models\Produto;
 use Brian2694\Toastr\Facades\Toastr;
-use Brian2694\Toastr\Toastr as ToastrToastr;
-use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
+
 class ProdutosController extends Controller
-{    private $produto;
+{   
+     
      public function __construct(Produto $produto)
     {
         $this->produto = $produto; 
@@ -17,6 +18,7 @@ class ProdutosController extends Controller
     {
         $pesquisar = $request->Pesquisar;
         $findProduto = $this->produto->getProdutosPesquisarIndex(search: $pesquisar ?? '');
+        
         return view('pages.produtos.paginacao',compact('findProduto'));
     }
      public function delete(Request $request)
@@ -52,7 +54,7 @@ class ProdutosController extends Controller
          $data['valor'] = $componentes->formatacaoMascaraDinheiroDecimal($data['valor']);
          $buscaRegistro = Produto::find($id);
          $buscaRegistro->update($data);
-        
+         Toastr::success('Dados atualizados com sucesso.');
          return redirect()->route('produto.index');
         }
         $findProduto = Produto::where('id', '=',$id)->first();

@@ -6,25 +6,21 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class FormRequestProduto extends FormRequest
 {
-
     public function authorize(): bool
     {
         return true;
     }
 
-    
+
     public function rules(): array
     {
         $request = [];
-        if($this->method() == 'POST'){
-            $request =
-            [
-                'nome'=> 'required',
-                'valor'=> 'required'
+        if ($this->method() == "POST" || $this->method() == "PUT") {
+            $request = [
+                'nome' => 'required',
+                'valor' => 'required'
             ];
         }
-         return $request;
-        
-       
+        return $request;
     }
 }
