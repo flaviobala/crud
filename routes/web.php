@@ -1,13 +1,22 @@
 <?php
 use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\DashbordController;
+use App\Http\Controllers\PaineldeController;
 use App\Http\Controllers\ProdutosController;
+use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\VendaController;
 use Illuminate\Support\Facades\Route;
 use Whoops\Run;
 
-Route::get('/', function (){
-    return view('index');
-});
+    Route::get('/', function() {
+      return view('index');
+
+    });
+
+     Route::prefix('painel')->group(function (){
+     Route::get('/',[PaineldeController::class,'index'])->name('painel.index');
+
+    });
 
  Route::prefix('produtos')->group(function (){
  Route::get('/', [ProdutosController::class,'index'])->name('produto.index');
@@ -38,3 +47,14 @@ Route::get('/', function (){
     Route::post('/cadastrarVenda', [VendaController::class,'cadastrarVenda'])->name('cadastrar.venda');
     Route::get('/enviacomprovantedeemail/{id}', [VendaController::class,'enviacomprovantedeemail'])->name('enviacomprovantedeemail.venda');
     });
+
+    Route::prefix('Usuario')->group(function (){
+        Route::get('/',[UsuarioController::class,'index'])->name('usuario.index');
+        Route::get('/cadastrarUsuario', [UsuarioController::class,'cadastrarUsuario'])->name('cadastrar.usuario');
+        Route::post('/cadastrarUsuario', [UsuarioController::class,'cadastrarUsuario'])->name('cadastrar.usuario');
+                                               //Atualizar usuario
+        Route::get('/atualizarUsuario/{id}', [UsuarioController::class,'atualizarUsuario'])->name('atualizar.usuario');
+        Route::put('/atualizarUsuario/{id}', [UsuarioController::class,'atualizarUsuario'])->name('atualizar.usuario');
+        Route::delete('/delete', [UsuarioController::class, 'delete'])->name('usuario.delete');
+                                                   
+      });

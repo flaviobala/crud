@@ -14,7 +14,8 @@ class Produto extends Model
         'valor',
     ];
 
-    public function getProdutosPesquisarIndex(string $search = ''){
+    public function getProdutosPesquisarIndex(string $search = '')
+    {
             $produto = $this->where( function ($query) use ($search){
                 if ($search){
                     $query->where('nome', $search);

@@ -2,9 +2,9 @@
     <div class="position-sticky pt-3 sidebar-sticky">
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">
+          <a class="nav-link" aria-current="page" href="{{ route('painel.index') }}">
             <span data-feather="home" class="align-text-bottom"></span>
-            VelStore
+            Peinel
           </a>
         </li>
         <li class="nav-item">
@@ -23,6 +23,12 @@
           <a class="nav-link" href="{{ route('cliente.index') }}">
             <span data-feather="users" class="align-text-bottom"></span>
             Clientes
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('usuario.index') }}">
+            <span data-feather="users" class="align-text-bottom"></span>
+            Usuários
           </a>
         </li>
     
